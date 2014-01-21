@@ -6,12 +6,12 @@
 #    By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/01/21 16:14:59 by gpetrov           #+#    #+#              #
-#    Updated: 2014/01/21 16:15:02 by gpetrov          ###   ########.fr        #
+#    Updated: 2014/01/21 20:04:07 by gpetrov          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME	= filler
-FILES	= main.c
+FILES	= main.c init.c
 SRCS	= $(addprefix src/, $(FILES))
 OBJS	= $(SRCS:src/%.c=.obj/%.o)
 INC		= -I includes -I libft/includes
@@ -30,6 +30,10 @@ gdb:
 	make -C libft
 	cc -g $(FLAGS) $(SRCS) -o $(NAME) $(INC) $(LIB)
 	gdb $(NAME)
+exec:
+	~/ruby-2.1.0/bin/./ruby vm_beta.rb -f maps/test.map -p1 \
+	~/Rendu/Algorithmie/filler/bin/grati.filler -p2 \
+	~/Rendu/Algorithmie/filler/filler
 clean:
 	rm -rf .obj
 fclean: clean
