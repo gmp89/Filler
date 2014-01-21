@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/21 16:11:22 by gpetrov           #+#    #+#             */
-/*   Updated: 2014/01/21 21:47:25 by gpetrov          ###   ########.fr       */
+/*   Updated: 2014/01/21 23:25:44 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int		main(void)
 		}
 		if (ft_check_line(line, "Plateau") == 1)
 		{
-			ft_save_map(&d, line);
+			ft_save_map(&d, &line);
+			ft_print_map(&d);
 		}
 	}
 	return (0);

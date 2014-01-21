@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/21 16:14:42 by gpetrov           #+#    #+#             */
-/*   Updated: 2014/01/21 21:47:14 by gpetrov          ###   ########.fr       */
+/*   Updated: 2014/01/21 23:27:09 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct		s_data
 
 int		ft_check_line(char *line, char *str);
 char	ft_set_player(char nb);
-int		ft_save_map(t_data *d, char *line);
+int		ft_save_map(t_data *d, char **line);
+void	ft_print_map(t_data *d);
+char	*ft_cpy_n(char *str, int nb);
 
 #endif

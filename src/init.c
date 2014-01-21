@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/21 19:58:02 by gpetrov           #+#    #+#             */
-/*   Updated: 2014/01/21 22:03:47 by gpetrov          ###   ########.fr       */
+/*   Updated: 2014/01/21 23:26:47 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,36 @@ char	*ft_cpy_n(char *str, int nb)
 	return (tmp);
 }
 
-int		ft_save_map(t_data *d, char *line)
+void	ft_print_map(t_data *d)
+{
+	int		i;
+
+	i = 0;
+	ft_putstr_fd("\n-------tab------\n", 2);
+	while (d->map[i] != 0)
+	{
+		ft_putstr_fd(d->map[i], 2);
+		ft_putstr_fd("\n", 2);
+		i++;
+	}
+	ft_putstr_fd("-------end-tab------\n", 2);
+}
+
+int		ft_save_map(t_data *d, char **line)
 {
 	int		i;
 	int		j;
+	char	*tmp;
 
-	i = 0;
+	i = 1;
 	j = 0;
-	d->size_y = ft_atoi(&line[8]);
-	d->size_x = ft_atoi(&line[10]);
+	tmp = ft_strdup(*line);
+	d->size_x = 0;
+	d->size_y = ft_atoi(&tmp[8]);
+	d->size_x = ft_atoi(&tmp[10]);
+	get_next_line(0, line);
+	get_next_line(0, line);
+	tmp = ft_strdup(*line);
 	ft_putstr_fd("\n-------------\n", 2);	/* display */
 	ft_putstr_fd("size y : ", 2);
 	ft_putnbr_fd(d->size_y, 2);
@@ -53,18 +74,16 @@ int		ft_save_map(t_data *d, char *line)
 	ft_putnbr_fd(d->size_x, 2);
 	ft_putstr_fd("\n-------------\n", 2);	/* end display */
 	d->map = (char **)malloc(sizeof(char *) * (d->size_y));
-	while (get_next_line(0, &d->tmp) > 0)
+	get_next_line(0, line);
+	while (i < d->size_y)
 	{
-		if (i == 1)
-		{
-			d->map[j] = (char *)malloc(sizeof(char) * d->size_x);
-			d->map[j] = ft_cpy_n(d->tmp, 5);
-			ft_putstr_fd("\n<------------->\n", 2);
-			ft_putstr_fd(d->map[j], 2);
-			ft_putstr_fd("\n", 2);
-			j++;
-		}
+		tmp = ft_strdup(*line);
+		d->map[j] = (char *)malloc(sizeof(char) * (d->size_x + 1));
+		d->map[j] = ft_cpy_n(tmp, 5);
+		j++;
 		i++;
+		get_next_line(0, line);
+		free(tmp);
 	}
 	d->map[j] = 0;
 	return (0);
