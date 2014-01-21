@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/21 19:58:02 by gpetrov           #+#    #+#             */
-/*   Updated: 2014/01/21 23:26:47 by gpetrov          ###   ########.fr       */
+/*   Updated: 2014/01/21 23:43:23 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,15 @@ int		ft_save_map(t_data *d, char **line)
 	get_next_line(0, line);
 	get_next_line(0, line);
 	tmp = ft_strdup(*line);
-	ft_putstr_fd("\n-------------\n", 2);	/* display */
-	ft_putstr_fd("size y : ", 2);
-	ft_putnbr_fd(d->size_y, 2);
-	ft_putstr_fd(" | size x : ", 2);
-	ft_putnbr_fd(d->size_x, 2);
-	ft_putstr_fd("\n-------------\n", 2);	/* end display */
+	/* ft_putstr_fd("\n-------------\n", 2);	/\* display *\/ */
+	/* ft_putstr_fd("size y : ", 2); */
+	/* ft_putnbr_fd(d->size_y, 2); */
+	/* ft_putstr_fd(" | size x : ", 2); */
+	/* ft_putnbr_fd(d->size_x, 2); */
+	/* ft_putstr_fd("\n-------------\n", 2);	/\* end display *\/ */
 	d->map = (char **)malloc(sizeof(char *) * (d->size_y));
-	get_next_line(0, line);
-	while (i < d->size_y)
+	/* get_next_line(0, line); */
+	while (i <= d->size_y)
 	{
 		tmp = ft_strdup(*line);
 		d->map[j] = (char *)malloc(sizeof(char) * (d->size_x + 1));

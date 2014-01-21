@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/21 16:14:42 by gpetrov           #+#    #+#             */
-/*   Updated: 2014/01/21 23:27:09 by gpetrov          ###   ########.fr       */
+/*   Updated: 2014/01/21 23:54:38 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct		s_data
 	char			*tmp;
 	char			player;
 	char			**map;
+	char			**piece;
 	int				size_x;
 	int				size_y;
 }					t_data;
