@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/21 16:11:22 by gpetrov           #+#    #+#             */
-/*   Updated: 2014/01/21 23:53:53 by gpetrov          ###   ########.fr       */
+/*   Updated: 2014/01/22 19:56:29 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,16 @@ int		main(void)
 		if (ft_check_line(line, "Plateau") == 1)
 		{
 			ft_save_map(&d, &line);
-			ft_print_map(&d);
+			ft_print_map(d.map);
 		}
-		/* if (ft_check_line(line, "Piece")) */
-		/* { */
-		/* 	ft_save_piece(&d); */
-		/* } */
+		if (ft_check_line(line, "Piece") == 1)
+		{
+			ft_save_piece(&d, &line);
+			/* ft_putstr_fd("\n --OK-- \n", 2); */
+			ft_print_map(d.piece);
+			ft_make_move(&d);
+			/* ft_putstr_fd("1 1\n", 1); */
+		}
 	}
 	return (0);
 }

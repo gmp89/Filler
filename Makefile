@@ -6,12 +6,12 @@
 #    By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/01/21 16:14:59 by gpetrov           #+#    #+#              #
-#    Updated: 2014/01/21 20:04:07 by gpetrov          ###   ########.fr        #
+#    Updated: 2014/01/22 17:07:19 by gpetrov          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME	= filler
-FILES	= main.c init.c
+FILES	= main.c init.c move.c list.c
 SRCS	= $(addprefix src/, $(FILES))
 OBJS	= $(SRCS:src/%.c=.obj/%.o)
 INC		= -I includes -I libft/includes
@@ -19,7 +19,6 @@ FLAGS	= -Wall -Wextra -Werror
 LIB		= -L libft -lft
 
 all: $(NAME)
-
 $(NAME): $(OBJS)
 	make -C libft
 	cc $(FLAGS) $(SRCS) -o $(NAME) $(INC) $(LIB)
