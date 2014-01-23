@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/21 16:14:42 by gpetrov           #+#    #+#             */
-/*   Updated: 2014/01/23 19:11:14 by gpetrov          ###   ########.fr       */
+/*   Updated: 2014/01/24 00:07:13 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define HEADER_H
 # define P1 'O'
 # define P2 'X'
+# define PL d->move_x + d->piece_x > d->size_x
 
 # include "libft.h"
 
@@ -36,6 +37,7 @@ typedef struct		s_data
 	int				tmp_y;
 	int				x;
 	int				y;
+	int				i;
 }					t_data;
 
 typedef struct		s_list
@@ -44,7 +46,6 @@ typedef struct		s_list
 	int				y;
 	int				chosen;
 	struct s_list	*next;
-	/* struct s_list	*prev; */
 }					t_list;
 
 int		ft_check_line(char *line, char *str);
@@ -63,38 +64,8 @@ void	ft_print_list(t_list *list);
 void	ft_count_stars(t_data *d);
 int		ft_pass_list(t_data *d, t_list *list);
 int		ft_check_pass(t_data *d, int tmpx, int tmpy, t_list *list);
+void	ft_put_lose(void);
+void	ft_putmove(t_data *d);
+void	ft_free_list(t_list *list);
 
 #endif
-
-/* int		ft_check_case(t_data *d, int x, int y) */
-/* { */
-/* 	t_list	*list; */
-/* 	t_list	*tmp; */
-/* 	int		i; */
-
-/* 	i = 0; */
-/* 	list = (t_list *)malloc(sizeof(t_list)); */
-/* 	tmp = (t_list *)malloc(sizeof(t_list)); */
-/* 	list = ft_make_list(d); */
-/* 	/\* ft_print_list(list); *\/ */
-/* 	/\* ft_putstr_fd("\n --OK-- \n", 2); *\/ */
-/* 	tmp = list; */
-/* 	ft_count_offset(d); */
-/* 	ft_count_stars(d); */
-/* 	while (i < d->stars) */
-/* 	{ */
-/* 		while (tmp != NULL) */
-/* 		{ */
-/* 			if (d->map[tmp->y + y][tmp->x + x] == '.') */
-/* 			{ */
-/* 				tmp = tmp->next; */
-/* 			} */
-/* 			else */
-/* 				return (-1); */
-/* 		} */
-/* 		i++; */
-/* 	} */
-/* 	free(tmp); */
-/* 	free(list); */
-/* 	return (1); */
-/* } */

@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/21 16:11:22 by gpetrov           #+#    #+#             */
-/*   Updated: 2014/01/22 22:59:11 by gpetrov          ###   ########.fr       */
+/*   Updated: 2014/01/23 19:22:43 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,13 @@ int		main(void)
 	while ((get_next_line(0, &line) > 0))
 	{
 		if (ft_check_line(line, "$$$") == 1)
-		{
 			d.player = (line[10] == '1' ? P1 : P2);
-			/* ft_putstr_fd("\n-------------\n", 2); */
-			/* ft_putchar_fd(d.player, 2); */
-			/* ft_putstr_fd("\n-------------\n", 2); */
-		}
 		if (ft_check_line(line, "Plateau") == 1)
-		{
 			ft_save_map(&d, &line);
-			/* ft_print_map(d.map); */
-		}
 		if (ft_check_line(line, "Piece") == 1)
 		{
 			ft_save_piece(&d, &line);
-			/* ft_putstr_fd("\n --OK-- \n", 2); */
-			/* ft_print_map(d.piece); */
 			ft_make_move(&d);
-			/* ft_putstr_fd("1 1\n", 1); */
 		}
 	}
 	return (0);

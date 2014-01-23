@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/21 19:58:02 by gpetrov           #+#    #+#             */
-/*   Updated: 2014/01/22 19:21:03 by gpetrov          ###   ########.fr       */
+/*   Updated: 2014/01/23 19:24:25 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,6 @@ void	ft_save_piece(t_data *d, char **line)
 	j = 0;
 	tmp = ft_strdup(*line);
 	ft_save_size_piece(d, tmp);
-	/* ft_putstr_fd("\n-------------\n", 2);	/\* display *\/ */
-	/* ft_putstr_fd("size piece y : ", 2); */
-	/* ft_putnbr_fd(d->piece_y, 2); */
-	/* ft_putstr_fd(" | size piece x : ", 2); */
-	/* ft_putnbr_fd(d->piece_x, 2); */
-	/* ft_putstr_fd("\n-------------\n", 2);	/\* end display *\/ */
 	d->piece = (char **)malloc(sizeof(char *) * (d->size_y + 1));
 	get_next_line(0, line);
 	while (j <= d->piece_y)
@@ -60,39 +54,6 @@ void	ft_save_piece(t_data *d, char **line)
 		get_next_line(0, line);
 	}
 	d->piece[j] = 0;
-}
-
-char	*ft_cpy_n(char *str, int nb)
-{
-	char	*tmp;
-	int		i;
-
-	i = 0;
-	nb -= 1;
-	tmp = (char *)malloc(sizeof(char) * ft_strlen(str));
-	while (str[nb] != 0)
-	{
-		tmp[i] = str[nb];
-		i++;
-		nb++;
-	}
-	tmp[i] = 0;
-	return (tmp);
-}
-
-void	ft_print_map(char **map)
-{
-	int		i;
-
-	i = 0;
-	ft_putstr_fd("\n-------tab------\n", 2);
-	while (map[i] != 0)
-	{
-		ft_putstr_fd(map[i], 2);
-		ft_putstr_fd("\n", 2);
-		i++;
-	}
-	ft_putstr_fd("-------end-tab------\n", 2);
 }
 
 void	ft_save_size(t_data *d, char *tmp)
@@ -126,12 +87,6 @@ int		ft_save_map(t_data *d, char **line)
 	get_next_line(0, line);
 	get_next_line(0, line);
 	tmp = ft_strdup(*line);
-	/* ft_putstr_fd("\n-------------\n", 2);	/\* display *\/ */
-	/* ft_putstr_fd("size y : ", 2); */
-	/* ft_putnbr_fd(d->size_y, 2); */
-	/* ft_putstr_fd(" | size x : ", 2); */
-	/* ft_putnbr_fd(d->size_x, 2); */
-	/* ft_putstr_fd("\n-------------\n", 2);	/\* end display *\/ */
 	d->map = (char **)malloc(sizeof(char *) * (d->size_y));
 	while (i <= d->size_y)
 	{

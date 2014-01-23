@@ -6,11 +6,23 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 17:06:57 by gpetrov           #+#    #+#             */
-/*   Updated: 2014/01/23 18:27:55 by gpetrov          ###   ########.fr       */
+/*   Updated: 2014/01/23 22:23:26 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+void	ft_free_list(t_list *list)
+{
+	t_list	*tmp;
+
+	while (list)
+	{
+		tmp = list->next;
+		free(list);
+		list = tmp;
+	}
+}
 
 t_list	*ft_add_elem(t_list *list, int x, int y)
 {
@@ -68,5 +80,4 @@ void	ft_print_list(t_list *list)
 		tmp = tmp->next;
 	}
 	ft_putstr_fd("----END---", 2);
-	/* free(tmp); */
 }

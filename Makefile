@@ -6,12 +6,12 @@
 #    By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/01/21 16:14:59 by gpetrov           #+#    #+#              #
-#    Updated: 2014/01/23 18:49:56 by gpetrov          ###   ########.fr        #
+#    Updated: 2014/01/23 19:20:58 by gpetrov          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME	= filler
-FILES	= main.c init.c move.c list.c
+FILES	= main.c init.c move.c list.c tools.c
 SRCS	= $(addprefix src/, $(FILES))
 OBJS	= $(SRCS:src/%.c=.obj/%.o)
 INC		= -I includes -I libft/includes
