@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/21 16:14:42 by gpetrov           #+#    #+#             */
-/*   Updated: 2014/01/22 20:24:41 by gpetrov          ###   ########.fr       */
+/*   Updated: 2014/01/23 19:11:14 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,18 @@ typedef struct		s_data
 	int				move_y;
 	int				offset_x;
 	int				offset_y;
+	int				stars;
+	int				tmp_x;
+	int				tmp_y;
+	int				x;
+	int				y;
 }					t_data;
 
 typedef struct		s_list
 {
 	int				x;
 	int				y;
+	int				chosen;
 	struct s_list	*next;
 	/* struct s_list	*prev; */
 }					t_list;
@@ -54,5 +60,41 @@ t_list	*ft_add_elem(t_list *list, int x, int y);
 void	ft_count_offset(t_data *d);
 int		ft_check_case(t_data *d, int x, int y);
 void	ft_print_list(t_list *list);
+void	ft_count_stars(t_data *d);
+int		ft_pass_list(t_data *d, t_list *list);
+int		ft_check_pass(t_data *d, int tmpx, int tmpy, t_list *list);
 
 #endif
+
+/* int		ft_check_case(t_data *d, int x, int y) */
+/* { */
+/* 	t_list	*list; */
+/* 	t_list	*tmp; */
+/* 	int		i; */
+
+/* 	i = 0; */
+/* 	list = (t_list *)malloc(sizeof(t_list)); */
+/* 	tmp = (t_list *)malloc(sizeof(t_list)); */
+/* 	list = ft_make_list(d); */
+/* 	/\* ft_print_list(list); *\/ */
+/* 	/\* ft_putstr_fd("\n --OK-- \n", 2); *\/ */
+/* 	tmp = list; */
+/* 	ft_count_offset(d); */
+/* 	ft_count_stars(d); */
+/* 	while (i < d->stars) */
+/* 	{ */
+/* 		while (tmp != NULL) */
+/* 		{ */
+/* 			if (d->map[tmp->y + y][tmp->x + x] == '.') */
+/* 			{ */
+/* 				tmp = tmp->next; */
+/* 			} */
+/* 			else */
+/* 				return (-1); */
+/* 		} */
+/* 		i++; */
+/* 	} */
+/* 	free(tmp); */
+/* 	free(list); */
+/* 	return (1); */
+/* } */

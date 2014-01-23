@@ -6,7 +6,7 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 17:06:57 by gpetrov           #+#    #+#             */
-/*   Updated: 2014/01/22 20:27:38 by gpetrov          ###   ########.fr       */
+/*   Updated: 2014/01/23 18:27:55 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ t_list	*ft_add_elem(t_list *list, int x, int y)
 	if (list == NULL)
 		return (new);
 	tmp = list;
-	while (tmp->next != NULL)
+	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
-	return (tmp);
+	return (list);
 }
 
 t_list	*ft_make_list(t_data *d)
@@ -67,5 +67,6 @@ void	ft_print_list(t_list *list)
 		ft_putstr_fd("\n", 2);
 		tmp = tmp->next;
 	}
-	free(tmp);
+	ft_putstr_fd("----END---", 2);
+	/* free(tmp); */
 }

@@ -6,11 +6,32 @@
 /*   By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 16:29:32 by gpetrov           #+#    #+#             */
-/*   Updated: 2014/01/22 20:29:40 by gpetrov          ###   ########.fr       */
+/*   Updated: 2014/01/23 19:11:22 by gpetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+void	ft_count_stars(t_data *d)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	d->stars = 0;
+	while (d->piece[i] != 0)
+	{
+		while (d->piece[i][j] != 0)
+		{
+			if (d->piece[i][j] == '*')
+				d->stars++;
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}
 
 void	ft_count_offset(t_data *d)
 {
@@ -39,6 +60,55 @@ void	ft_count_offset(t_data *d)
 	}
 	d->offset_x = j;
 	d->offset_y = i;
+	/* ft_putstr_fd("------TEST-----", 2); */
+	/* ft_putstr_fd(ft_itoa(d->offset_x), 2); */
+	/* ft_putstr_fd(" ", 2); */
+	/* ft_putstr_fd(ft_itoa(d->offset_y), 2); */
+}
+
+int		ft_check_pass(t_data *d, int tmpx, int tmpy, t_list *list)
+{
+		t_list	*tmp;
+		int		i;
+
+		i = 0;
+		tmp = (t_list *)malloc(sizeof(t_list));
+		tmp = list;
+		/* ft_print_list(tmp); */
+		while (tmp != NULL)
+		{
+			if (i >= 2)
+				return (-1);
+			if ((d->map[(d->y - tmpy) + tmp->y][(d->x - tmpx) + tmp->x] == d->player || d->map[(d->y - tmpy) + tmp->y][(d->x - tmpx) + tmp->x] == d->player + 32) && i < 2)
+			{
+				i++;
+				d->move_x = d->x - tmpx;
+				d->move_y = d->y - tmpy;
+				if (tmp->next != NULL)
+					tmp = tmp->next;
+			}
+			if (d->map[(d->y - tmpy) + tmp->y][(d->x - tmpx) + tmp->x] == '.')
+					tmp	= tmp->next;
+			else
+				return (-1);
+		}
+		return (1);
+}
+
+int		ft_pass_list(t_data *d, t_list *list)
+{
+		t_list	*tmp;
+
+		tmp = (t_list *)malloc(sizeof(t_list));
+		tmp = list;
+		while (tmp != NULL)
+		{
+			if (ft_check_pass(d, tmp->x, tmp->y, tmp) == 1)
+				return (1);
+			else
+				tmp = tmp->next;
+		}
+		return (0);
 }
 
 int		ft_check_case(t_data *d, int x, int y)
@@ -46,32 +116,23 @@ int		ft_check_case(t_data *d, int x, int y)
 	t_list	*list;
 	t_list	*tmp;
 
+	d->x = x;
+	d->y = y;
 	list = (t_list *)malloc(sizeof(t_list));
 	tmp = (t_list *)malloc(sizeof(t_list));
 	list = ft_make_list(d);
-	/* ft_print_list(list); */
-	ft_putstr_fd("\n --OK-- \n", 2);
 	tmp = list;
-	ft_count_offset(d);
-	tmp->x += x;
-	tmp->y += y;
-	tmp = tmp->next;
+	if (ft_pass_list(d, list) == 1)
+		return (1);
+	return (0);
+}
 
-	while (tmp != NULL)
-	{
-		tmp->x += x;
-		tmp->y += y;
-		if (d->map[tmp->y][tmp->x] == '.')
-		{
-			/* d->move_x -= d->offset_x; */
-			/* d->move_y -= d->offset_y; */
-			tmp = tmp->next;
-		}
-		else
-			return (-1);
-	}
-	free(list);
-	return (1);
+void	ft_put_lose(void)
+{
+	ft_putstr_fd("0", 1);
+	ft_putstr_fd(" ", 1);
+	ft_putstr_fd("0", 1);
+	ft_putstr_fd("\n", 1);
 }
 
 int		ft_make_move(t_data *d)
@@ -86,15 +147,19 @@ int		ft_make_move(t_data *d)
 	{
 		while (d->map[i][j] != 0)
 		{
-			if (d->map[i][j] == d->player || d->map[i][j] == (d->player + 32))
+			if ((d->map[i][j] == d->player || d->map[i][j] == (d->player + 32)))
 			{
 				if (ft_check_case(d, j, i) == 1)
 				{
-					ft_putstr_fd("1 1\n", 1);
-					/* ft_putnbr(d->move_y); */
-					/* ft_putchar(' '); */
-					/* ft_putnbr(d->move_x); */
-					/* ft_putchar('\n'); */
+					if ((d->move_y + d->piece_y) > d->size_y && (d->move_x + d->piece_x) > d->size_x)
+					{
+						ft_put_lose();
+						return (1);
+					}
+					ft_putstr_fd(ft_itoa(d->move_y), 1);
+					ft_putstr_fd(" ", 1);
+					ft_putstr_fd(ft_itoa(d->move_x), 1);
+					ft_putstr_fd("\n", 1);
 					return (1);
 				}
 			}
@@ -102,6 +167,7 @@ int		ft_make_move(t_data *d)
 		}
 		j = 0;
 		i++;
+		/* ft_put_lose(); */
 	}
 	return (0);
 }

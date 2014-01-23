@@ -6,7 +6,7 @@
 #    By: gpetrov <gpetrov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/01/21 16:14:59 by gpetrov           #+#    #+#              #
-#    Updated: 2014/01/22 17:07:19 by gpetrov          ###   ########.fr        #
+#    Updated: 2014/01/23 18:49:56 by gpetrov          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -30,7 +30,7 @@ gdb:
 	cc -g $(FLAGS) $(SRCS) -o $(NAME) $(INC) $(LIB)
 	gdb $(NAME)
 exec:
-	~/ruby-2.1.0/bin/./ruby vm_beta.rb -f maps/test.map -p1 \
+	~/ruby-2.1.0/bin/./ruby vm_beta.rb -f maps/map1.map -p1 \
 	~/Rendu/Algorithmie/filler/bin/grati.filler -p2 \
 	~/Rendu/Algorithmie/filler/filler
 clean:
